@@ -1,0 +1,57 @@
+<br>
+<form (ngSubmit)="submitDonor()">
+    <div class="row">
+        <div class="col-2">
+            <small>Name</small>
+        </div>
+        <div class="col">
+            <input type="text" name="name" id="name" size="90px" [(ngModel)]="newDonor.name">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-2">
+            <small>Description</small>
+        </div>
+        <div class="col">
+            <textarea type="text" name="description" id="description"  cols="93" rows="3" [(ngModel)]="newDonor.description"></textarea>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-2">
+            <small>Donation Date</small>
+        </div>
+        <div class="col">
+            <ngb-datepicker name="charity_date" id="charity_date" [(ngModel)]="charity_date"></ngb-datepicker>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-2">
+            <small>Categories</small>
+        </div>
+        <div class="col">
+            <select name="sel" id="sel" [(ngModel)]="newDonor.categories" multiple>
+                <option *ngFor="let i of categories" value="{{i}}">{{i}}</option>
+            </select>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-2">
+            <small>Value</small>
+        </div>
+        <div class="col">
+            <input type="number" name="estimated_value" id="estimated_value" size="90px" [(ngModel)]="newDonor.estimated_value">
+        </div>
+    </div>
+    <br>
+    <div class="form-group row">
+		<div class="col offset-3">
+			<button class="btn btn-primary" type="submit">Submit</button>
+		</div>
+	</div>
+    {{newDonor | json}}
+    {{charity_date | json}}
+</form>

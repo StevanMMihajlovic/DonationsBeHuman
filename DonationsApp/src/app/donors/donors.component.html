@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-6">
+        <app-pagination [actualPage]="params.page" [collectionSize]="donors.count" [pageSize]="params.pageSize" (pagechange)="pageChange($event)"></app-pagination>
+        <div>
+            <form>
+                <div>
+                    <label for="esvalue">Estimated value:</label>
+                    <input type="number" name="esvalue1" id="esvalue1" [(ngModel)]="params.filter.minValue" (change)="getDonors()" placeholder="Min" size="5px">
+                    <input type="number" name="esvalue2" id="esvalue2" [(ngModel)]="params.filter.maxValue" (change)="getDonors()" placeholder="Max" size="5px">
+                </div>
+                <br>
+                <div>
+                    <label for="sel">Category:</label>
+                    <select name="sel" id="sel" [(ngModel)]="params.filter.categories" (change)="getDonors()">
+                        <option value="">All</option>
+                        <option *ngFor="let i of categories" value="{{i}}">{{i}}</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-6">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Year</th>
+                <th scope="col">Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let donor of donors.donors" [routerLink]="[donor._id]">
+                <td>{{donor.name}}</td>
+                <td>{{donor.charity_date.substring(0,4)}}</td>
+                <td>{{donor.estimated_value}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
